@@ -14,7 +14,9 @@
 
     <hr>
 
-    <h3> the value is: <?= $value ?></h3>
+    <h3> the value is: {{ $value }} </h3>
+    {{-- <h3> the value is: <?= $value ?></h3> --}}
+    {{-- <h3> the value is: <?php echo $value; ?> </h3> --}}
 </body>
 
 </html>
