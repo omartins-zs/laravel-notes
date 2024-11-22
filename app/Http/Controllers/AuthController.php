@@ -48,11 +48,22 @@ class AuthController extends Controller
         if (!password_verify($password, $user->password)) {
             return redirect()->back()->withInput()->with('loginError', 'Username ou Password incorreto');
         }
-        
 
+        // Update last login
+        $user->last_login = date('Y-m-d H:i:s');
+        $user->save();
 
-        echo "<pre>";
-        print_r($user);
+        // Login User
+        session([
+            'user' => [
+                'id' => $user->id,
+                'username' => $user->username,
+            ]
+        ]);
+
+        echo 'Login com Sucesso';
+        // echo "<pre>";
+        // print_r($user);
     }
     public function logout()
     {
