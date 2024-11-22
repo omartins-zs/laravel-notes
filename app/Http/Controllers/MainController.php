@@ -24,8 +24,10 @@ class MainController extends Controller
 
     public function newNote()
     {
-        echo "New note";
+        // Show new Note View
+        return view('new_note');
     }
+
     public function editNote($id)
     {
         $id = Operations::decryptId($id);
