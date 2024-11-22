@@ -48,7 +48,19 @@ class MainController extends Controller
                 'text_note.max' => 'A nota deve ter no máximo :max caracteres'
             ]
         );
-        echo "OK";
+
+        // get user id
+        $id = session('user.id');
+
+        // create new note
+        $note = new Note();
+        $note->user_id = $id;
+        $note->title = $request->text_title;
+        $note->text = $request->text_note;
+        $note->save();
+
+        // redirect to home
+        return redirect()->route('home');
     }
 
     public function editNote($id)
