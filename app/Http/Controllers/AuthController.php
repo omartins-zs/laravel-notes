@@ -37,12 +37,14 @@ class AuthController extends Controller
         $password = $request->input('text_password');
 
         // Get all the users from the database
+        // $users = User::all()->toArray();
 
-        $users = User::all()->toArray();
+        // As an object instance of the model class
+        $userModel = new User();
+        $users = $userModel->all()->toArray();
 
         echo "<pre>";
         print_r($users);
-
     }
     public function logout()
     {
