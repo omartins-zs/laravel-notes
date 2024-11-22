@@ -67,8 +67,13 @@ class MainController extends Controller
     {
         $id = Operations::decryptId($id);
 
-        echo "Editando a nota ID:  " . $id;
+        // load note
+        $note = Note::find($id);
+
+        // show edit note view
+        return view('edit_note', ['note' => $note]);
     }
+
     public function deleteNote($id)
     {
         $id = Operations::decryptId($id);
