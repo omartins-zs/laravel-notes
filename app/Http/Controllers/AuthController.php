@@ -61,8 +61,8 @@ class AuthController extends Controller
             ]
         ]);
 
-        // Redirect to home
-        redirect()->to('/');
+        // redirect to home
+        return redirect()->to('/');
     }
     public function logout()
     {
