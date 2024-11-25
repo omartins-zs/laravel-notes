@@ -126,6 +126,10 @@ class MainController extends Controller
     {
         $id = Operations::decryptId($id);
 
+        if ($id === null) {
+            return redirect()->route('home');
+        }
+
         // load note
         $note = Note::find($id);
 
