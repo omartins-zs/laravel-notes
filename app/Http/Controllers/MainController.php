@@ -14,7 +14,7 @@ class MainController extends Controller
     {
         // Load Users notes
         $id = session('user.id');
-        $notes = User::find($id)->notes()->get()->toArray();
+        $notes = User::find($id)->notes()->whereNull('deleted_at')->get()->toArray();
 
         // Show Home View
         return view('home', ['notes' => $notes]);
@@ -145,7 +145,12 @@ class MainController extends Controller
         $note = Note::find($id);
 
         // 1. hard delete
-        $note->delete();
+        // $note->delete();
+
+        // 2. soft delete
+        $note->deleted_at = date('Y:m:d H:i:s');
+        $note->save();
+
 
         // redirect to home
         return redirect()->route('home');
