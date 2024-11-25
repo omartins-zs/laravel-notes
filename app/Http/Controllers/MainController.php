@@ -152,10 +152,10 @@ class MainController extends Controller
         // $note->save();
 
         // 3. soft delete (property SoftDeletes in model)
-        // $note->delete();
+        $note->delete();
 
         // 4. hard delete (property SoftDeletes in model)
-        $note->forceDelete();
+        // $note->forceDelete();
 
         // redirect to home
         return redirect()->route('home');
