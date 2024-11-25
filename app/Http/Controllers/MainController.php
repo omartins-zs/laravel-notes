@@ -131,4 +131,23 @@ class MainController extends Controller
 
         return view('delete_note', ['note' => $note]);
     }
+
+    public function deleteNoteConfirm($id)
+    {
+        // check if $id is encrypted
+        $id = Operations::decryptId($id);
+
+        if ($id === null) {
+            return redirect()->route('home');
+        }
+
+        // load note
+        $note = Note::find($id);
+
+        // 1. hard delete
+        $note->delete();
+
+        // redirect to home
+        return redirect()->route('home');
+    }
 }
