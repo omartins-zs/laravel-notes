@@ -1,0 +1,51 @@
+# version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: laravel_app
+    restart: unless-stopped
+    working_dir: /var/www/html
+    volumes:
+      - .:/var/www/html
+    networks:
+      - laravel_network
+
+  webserver:
+    image: nginx:alpine
+    container_name: laravel_webserver
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/var/www/html
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+    networks:
+      - laravel_network
+    depends_on:
+      - app
+
+  db:
+    image: mysql:8.0
+    container_name: laravel_db
+    restart: unless-stopped
+    ports:
+      - "23306:3306"  # Mapeia a porta 3306 do contêiner para a 3307 no host
+    environment:
+      MYSQL_DATABASE: laravel_notes
+      MYSQL_USER: user_laravel_notes
+      MYSQL_PASSWORD: G1zEN5C6HE71Na3A5isec4so8AmAKu
+      MYSQL_ROOT_PASSWORD: secret
+    volumes:
+      - laravel_db_data:/var/lib/mysql
+    networks:
+      - laravel_network
+
+volumes:
+  laravel_db_data:
+
+networks:
+  laravel_network:
+    driver: bridge
