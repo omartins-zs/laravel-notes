@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MainController;
+use App\Http\Controllers\TestController;
 use App\Http\Middleware\CheckIsLogged;
 use App\Http\Middleware\CheckIsNotLogged;
 use Illuminate\Support\Facades\DB;
@@ -41,3 +42,5 @@ Route::get('/test-log', function () {
     Log::info('Log de teste para o Telescope');
     return 'Log gerado!';
 });
+
+Route::get('/send-email', [TestController::class, 'sendEmail']);
