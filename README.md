@@ -1,10 +1,11 @@
-# Laravel Notes
 
-<p align="center">
-  <img src="https://github.com/devicons/devicon/blob/master/icons/php/php-original.svg" height="100px">
-  <span style="font-size: 40px; font-weight: bold; margin: 0 20px;">Laravel Notes</span>
-  <img src="https://github.com/devicons/devicon/blob/master/icons/laravel/laravel-original.svg" height="100px">
-</p>
+<h1 align="center" style="border-bottom: none;">
+  <img align="left" height="60" width="65" src="https://github.com/devicons/devicon/blob/master/icons/laravel/laravel-original.svg">
+  📋 Laravel Notes
+  <img align="right" height="60" width="65" src="https://github.com/devicons/devicon/blob/master/icons/php/php-original.svg">
+</h1>
+
+<br>
 
 ## 📌 Sobre o Projeto
 Laravel Notes é um sistema completo desenvolvido em Laravel que inclui recursos modernos, como filas, autenticação personalizada, validação de dados e logging avançado com [Laravel Telescope](https://laravel.com/docs/12.x/telescope).
