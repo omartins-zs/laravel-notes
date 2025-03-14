@@ -2,26 +2,31 @@
 
 namespace App\Jobs;
 
+use App\Mail\TestEmail;
+use Illuminate\Bus\Batchable;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Foundation\Queue\Queueable;
+use Illuminate\Mail\Mailable;
+use Illuminate\Support\Facades\Mail;
 
 class SendTestEmail implements ShouldQueue
 {
-    use Queueable;
+    use Batchable;
 
-    /**
-     * Create a new job instance.
-     */
-    public function __construct()
+    protected $email;
+
+    // Recebe o e-mail como parâmetro
+    public function __construct($email)
     {
-        //
+        $this->email = $email;
     }
 
-    /**
-     * Execute the job.
-     */
-    public function handle(): void
+    // Método handle() que é executado quando o job é processado
+    public function handle()
     {
-        //
+        // Simula o tempo de envio do e-mail
+        sleep(5);  // Simula um atraso de 5 segundos
+
+        // Aqui você pode colocar o envio real de e-mail
+        Mail::to($this->email)->send(new TestEmail());
     }
 }
